@@ -11,14 +11,13 @@ import {
 } from "@mantine/core";
 import { useHover } from "@mantine/hooks";
 import {
-  ChevronRightIcon,
   DotsVerticalIcon,
   MagnifyingGlassIcon,
-  Pencil1Icon,
   PersonIcon,
   PlusIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom";
 
 export function Log() {
   return (
@@ -46,10 +45,10 @@ export function Log() {
           gap: 15,
         }}
       >
-        <LogCard title="Bitacora 1" />
-        <LogCard title="Bitacora 1" />
-        <LogCard title="Bitacora 1" />
-        <LogCard title="Bitacora 1" />
+        <LogCard title="Bitacora 1" to="/bitacoras/1" />
+        <LogCard title="Bitacora 1" to="/bitacoras/1" />
+        <LogCard title="Bitacora 1" to="/bitacoras/1" />
+        <LogCard title="Bitacora 1" to="/bitacoras/1" />
       </div>
     </div>
   );
@@ -57,12 +56,17 @@ export function Log() {
 
 interface LogCardProps {
   title: string;
+  to: string;
 }
 function LogCard(props: LogCardProps) {
   const { hovered, ref } = useHover();
+  const navigate = useNavigate();
+  const handleMove = () => {
+    navigate(props.to);
+  };
   return (
     <Card shadow="sm" padding="lg" ref={ref} style={{ height: 100 }}>
-      <UnstyledButton style={{ width: "100%" }}>
+      <UnstyledButton style={{ width: "100%" }} onClick={handleMove}>
         <Group position="apart">
           <Text weight={500}>{props.title}</Text>
           <Badge color={"green"}>Ok</Badge>
@@ -82,6 +86,11 @@ function LogCard(props: LogCardProps) {
             <UnstyledButton>
               <ActionIcon color="blue">
                 <PersonIcon />
+              </ActionIcon>
+            </UnstyledButton>
+            <UnstyledButton>
+              <ActionIcon color="green">
+                <PlusIcon />
               </ActionIcon>
             </UnstyledButton>
           </Group>
