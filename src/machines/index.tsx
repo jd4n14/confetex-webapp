@@ -10,6 +10,7 @@ import {
   Pagination,
   Avatar,
   Input,
+  Title,
 } from "@mantine/core";
 import {
   ChevronRightIcon,
@@ -17,7 +18,7 @@ import {
   MagnifyingGlassIcon,
   PlusIcon,
 } from "@radix-ui/react-icons";
-import Scrollbars from "react-custom-scrollbars";
+import { useNavigate } from "react-router-dom";
 
 const elements = [
   { position: 6, mass: 12.011, symbol: "C" },
@@ -27,7 +28,8 @@ const elements = [
   { position: 58, mass: 140.12, symbol: "Ce" },
 ];
 
-export function Machine() {
+export function Machines() {
+  const navigate = useNavigate();
   const rows = elements.map((element) => (
     <tr key={element.symbol}>
       <td>{element.position}</td>
@@ -41,15 +43,32 @@ export function Machine() {
           <Text size="sm">Juan Diego Parra Mendez</Text>
         </Group>
       </td>
+      <td>
+        <Button
+          variant="light"
+          radius="xl"
+          size="xs"
+          compact
+          rightIcon={<ChevronRightIcon />}
+          onClick={() => navigate("/maquinas/1")}
+        >
+          Ver
+        </Button>
+      </td>
     </tr>
   ));
   return (
-    <Scrollbars>
-      <Group position="right" style={{ marginTop: 20, marginBottom: 20 }}>
-        <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-        <Button variant="light" leftIcon={<PlusIcon />}>
-          Agregar
-        </Button>
+    <>
+      <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
+        <Text size="xl" weight={600}>
+          Maquinas
+        </Text>
+        <Group>
+          <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
+          <Button variant="light" leftIcon={<PlusIcon />}>
+            Agregar
+          </Button>
+        </Group>
       </Group>
       <Table>
         <thead>
@@ -58,6 +77,7 @@ export function Machine() {
             <th>Modelo</th>
             <th>Marca</th>
             <th>Operador</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -65,6 +85,6 @@ export function Machine() {
       <Group position="center" style={{ marginTop: 30 }}>
         <Pagination total={5} page={1} color="blue" onChange={() => {}} />
       </Group>
-    </Scrollbars>
+    </>
   );
 }
