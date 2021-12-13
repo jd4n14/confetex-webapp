@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import { createStyles } from "@mantine/styles";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "react-router-dom";
 const useStyles = createStyles((theme) => ({
   layout: {
     display: "grid",
@@ -22,17 +23,30 @@ const useStyles = createStyles((theme) => ({
 
 interface ShowCardProps {
   title: string;
+  to: string;
 }
 
 function ShowCard(props: ShowCardProps) {
   const { classes } = useStyles();
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    navigate(props.to);
+  };
+
   return (
     <Card shadow="sm" padding="lg">
       <Group position="apart" className={classes.cardGroup}>
         <Text weight={500}>{props.title}</Text>
       </Group>
 
-      <Button variant="light" color="blue" fullWidth style={{ marginTop: 14 }}>
+      <Button
+        variant="light"
+        color="blue"
+        fullWidth
+        style={{ marginTop: 14 }}
+        onClick={handleOnClick}
+      >
         Ir
         <ChevronRightIcon />
       </Button>
@@ -42,15 +56,19 @@ function ShowCard(props: ShowCardProps) {
 
 export function Home() {
   const { classes } = useStyles();
+  const navigate = useNavigate();
   return (
     <>
       <Title order={3} sx={(t) => ({ marginBottom: t.spacing.md })}>
         Bienvenido
       </Title>
       <div className={classes.layout}>
-        <ShowCard title="Bitacoras" />
-        <ShowCard title="Usuarios" />
-        <ShowCard title="Solicitudes" />
+        <ShowCard title="Bitacoras" to="bitacoras" />
+        <ShowCard title="Usuarios" to="usuarios" />
+        <ShowCard title="Solicitudes" to="solicitudes" />
+        <ShowCard title="Maquinas" to="maquinas" />
+        <ShowCard title="Lineas de produccion" to="lineas" />
+        <ShowCard title="Configuracion" to="configuracion" />
       </div>
     </>
   );
