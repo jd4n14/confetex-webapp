@@ -12,6 +12,8 @@ import {
 } from "@mantine/core";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import { Scrollbars } from "react-custom-scrollbars";
+import { createStyles } from "@mantine/styles";
+import { useNavigate } from "react-router-dom";
 
 const elements = [
   { position: 6, mass: 12.011, symbol: "C", name: "Carbon", log: 1 },
@@ -22,6 +24,7 @@ const elements = [
 ];
 
 export function Request() {
+  const navigate = useNavigate();
   const rows = elements.map((element) => (
     <tr key={element.name}>
       <td>
@@ -49,6 +52,7 @@ export function Request() {
           size="xs"
           compact
           rightIcon={<ChevronRightIcon />}
+          onClick={() => navigate("/solicitudes/1")}
         >
           Ver
         </Button>

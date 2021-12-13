@@ -34,7 +34,7 @@ const UserCard = (props: UserCardProps) => {
   const { classes } = useStyles();
   const { hovered, ref } = useHover();
   return (
-    <Card shadow="sm" padding="lg" style={{ height: 130 }} ref={ref}>
+    <Card shadow="sm" padding="lg" style={{ height: 110 }} ref={ref}>
       <UnstyledButton style={{ width: "100%" }}>
         <Group>
           <Avatar radius="xl" color="blue" size="lg">
