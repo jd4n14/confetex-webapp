@@ -66,7 +66,7 @@ function LogCard(props: LogCardProps) {
   };
   return (
     <Card shadow="sm" padding="lg" ref={ref} style={{ height: 100 }}>
-      <UnstyledButton style={{ width: "100%" }} onClick={handleMove}>
+      <UnstyledButton style={{ width: "100%" }} onClick={handleMove} >
         <Group position="apart">
           <Text weight={500}>{props.title}</Text>
           <Badge color={"green"}>Ok</Badge>
