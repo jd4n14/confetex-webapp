@@ -19,6 +19,8 @@ import {
 } from "@radix-ui/react-icons";
 import { createStyles } from "@mantine/styles";
 import { useHover } from "@mantine/hooks";
+import { useModals } from "@mantine/modals";
+import { UserForm } from "./components/UserForm";
 
 const useStyles = createStyles((theme) => ({
   cardGroup: {
@@ -68,6 +70,7 @@ const UserCard = (props: UserCardProps) => {
 };
 
 export function User() {
+  const modals = useModals()
   return (
     <div>
       <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
@@ -76,7 +79,12 @@ export function User() {
         </Text>
         <Group>
           <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-          <Button variant="light" leftIcon={<PlusIcon />}>
+          <Button variant="light" leftIcon={<PlusIcon />} onClick={() => {
+            modals.openModal({
+              title: 'Agregar Usuario',
+              children: (<UserForm />)
+            })
+          }}>
             Agregar
           </Button>
           <Menu

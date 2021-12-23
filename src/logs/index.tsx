@@ -1,30 +1,32 @@
 import {
   ActionIcon,
-  Badge,
   Button,
-  Card,
   Group,
   Input,
   Menu,
-  Text,
-  UnstyledButton,
 } from "@mantine/core";
-import { useHover } from "@mantine/hooks";
+import { useModals } from "@mantine/modals";
 import {
   DotsVerticalIcon,
   MagnifyingGlassIcon,
-  PersonIcon,
   PlusIcon,
-  TrashIcon,
 } from "@radix-ui/react-icons";
-import { useNavigate } from "react-router-dom";
+import { LogCard } from "./components/LogCard";
+import LogForm from "./components/LogForm";
 
 export function Log() {
+  const modals = useModals();
+
   return (
     <div>
       <Group position="right" style={{ marginTop: 20, marginBottom: 20 }}>
         <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-        <Button variant="light" leftIcon={<PlusIcon />}>
+        <Button variant="light" leftIcon={<PlusIcon />} onClick={() => {
+          modals.openModal({
+            title: 'Agregar bitacora',
+            children: ( <LogForm /> )
+          })
+        }}>
           Agregar
         </Button>
         <Menu
@@ -51,51 +53,5 @@ export function Log() {
         <LogCard title="Bitacora 1" to="/bitacoras/1" />
       </div>
     </div>
-  );
-}
-
-interface LogCardProps {
-  title: string;
-  to: string;
-}
-function LogCard(props: LogCardProps) {
-  const { hovered, ref } = useHover();
-  const navigate = useNavigate();
-  const handleMove = () => {
-    navigate(props.to);
-  };
-  return (
-    <Card shadow="sm" padding="lg" ref={ref} style={{ height: 100 }}>
-      <UnstyledButton style={{ width: "100%" }} onClick={handleMove} >
-        <Group position="apart">
-          <Text weight={500}>{props.title}</Text>
-          <Badge color={"green"}>Ok</Badge>
-        </Group>
-        <Group>
-          <Text size="xs" color="gray">
-            Planta 1
-          </Text>
-        </Group>
-        {hovered && (
-          <Group position="right">
-            <UnstyledButton>
-              <ActionIcon color="red">
-                <TrashIcon></TrashIcon>
-              </ActionIcon>
-            </UnstyledButton>
-            <UnstyledButton>
-              <ActionIcon color="blue">
-                <PersonIcon />
-              </ActionIcon>
-            </UnstyledButton>
-            <UnstyledButton>
-              <ActionIcon color="green">
-                <PlusIcon />
-              </ActionIcon>
-            </UnstyledButton>
-          </Group>
-        )}
-      </UnstyledButton>
-    </Card>
   );
 }
