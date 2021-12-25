@@ -1,7 +1,9 @@
 import { Group, Button, Text, Table, Pagination, Input } from "@mantine/core";
+import { useHotkeys } from "@mantine/hooks";
 import { useModals } from "@mantine/modals";
 import { ChevronRightIcon, MagnifyingGlassIcon, PlusIcon } from "@radix-ui/react-icons";
 import { ChipButton } from "../core/components";
+import { InputSearch } from "../core/components/InputSearch";
 import { UserAvatar } from "../core/components/UserAvatar";
 import { MachineForm } from "./components/MachineForm";
 
@@ -15,6 +17,16 @@ const elements = [
 
 export function Machines() {
   const modals = useModals();
+
+  useHotkeys([["mod+C", () => handleShowModal()]]);
+
+  const handleShowModal = () => {
+    modals.openModal({
+      title: "Agregar Maquina",
+      children: <MachineForm />,
+    });
+  };
+
   const rows = elements.map((element) => (
     <tr key={element.identifier}>
       <td>{element.identifier}</td>
@@ -35,17 +47,8 @@ export function Machines() {
           Maquinas
         </Text>
         <Group>
-          <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-          <Button
-            variant="light"
-            leftIcon={<PlusIcon />}
-            onClick={() => {
-              modals.openModal({
-                title: "Agregar Maquina",
-                children: <MachineForm />,
-              });
-            }}
-          >
+          <InputSearch onChange={(val: string) => {}} />
+          <Button variant="light" leftIcon={<PlusIcon />} onClick={handleShowModal}>
             Agregar
           </Button>
         </Group>

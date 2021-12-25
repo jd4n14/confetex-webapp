@@ -7,7 +7,7 @@ export const HeaderActions = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
 
-  useHotkeys([["mod+F", () => toggleFullScreen()]]);
+  useHotkeys([["mod+T", () => toggleFullScreen()]]);
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   return (
