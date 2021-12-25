@@ -10,11 +10,12 @@ import { Settings } from "./settings";
 import { MachineDetails } from "./machines/details";
 import { RequestDetails } from "./requests/details";
 import { LogDetails } from "./logs/details";
+import { Login } from "./login";
 
 function App() {
   return (
-    <Layout>
-      <Routes>
+    <Routes>
+      <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="bitacoras" element={<Log />} />
         <Route path="bitacoras/:id" element={<LogDetails />} />
@@ -25,8 +26,9 @@ function App() {
         <Route path="maquinas/:id" element={<MachineDetails />} />
         <Route path="lineas" element={<Lines />} />
         <Route path="configuracion" element={<Settings />} />
-      </Routes>
-    </Layout>
+      </Route>
+      <Route path="login" element={<Login />} />
+    </Routes>
   );
 }
 
