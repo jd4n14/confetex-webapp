@@ -10,10 +10,8 @@ import {
   UnstyledButton,
 } from "@mantine/core";
 import {
-  ChevronRightIcon,
   DotsVerticalIcon,
   MagnifyingGlassIcon,
-  PersonIcon,
   PlusIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -35,6 +33,7 @@ interface UserCardProps {
 const UserCard = (props: UserCardProps) => {
   const { classes } = useStyles();
   const { hovered, ref } = useHover();
+  const modals = useModals();
   return (
     <Card shadow="sm" padding="lg" style={{ height: 110 }} ref={ref}>
       <UnstyledButton style={{ width: "100%" }}>
@@ -42,11 +41,7 @@ const UserCard = (props: UserCardProps) => {
           <Avatar radius="xl" color="blue" size="lg">
             JD
           </Avatar>
-          <Group
-            position="apart"
-            className={classes.cardGroup}
-            direction="column"
-          >
+          <Group position="apart" className={classes.cardGroup} direction="column">
             <Text weight={500} style={{ margin: 0 }}>
               {props.name}
             </Text>
@@ -57,11 +52,26 @@ const UserCard = (props: UserCardProps) => {
         </Group>
         {hovered && (
           <Group position="right">
-            <UnstyledButton>
-              <ActionIcon color="red">
-                <TrashIcon></TrashIcon>
-              </ActionIcon>
-            </UnstyledButton>
+            <ActionIcon
+              color="red"
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                event.stopPropagation();
+                modals.openConfirmModal({
+                  title: "Confirma tu accion",
+                  labels: {
+                    cancel: "Cancelar",
+                    confirm: "Confirmar",
+                  },
+                  confirmProps: {
+                    color: "red",
+                  },
+                  onCancel: () => console.log("cancelled"),
+                  onConfirm: () => console.log("confirmed"),
+                });
+              }}
+            >
+              <TrashIcon></TrashIcon>
+            </ActionIcon>
           </Group>
         )}
       </UnstyledButton>
@@ -70,7 +80,7 @@ const UserCard = (props: UserCardProps) => {
 };
 
 export function User() {
-  const modals = useModals()
+  const modals = useModals();
   return (
     <div>
       <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
@@ -79,12 +89,16 @@ export function User() {
         </Text>
         <Group>
           <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-          <Button variant="light" leftIcon={<PlusIcon />} onClick={() => {
-            modals.openModal({
-              title: 'Agregar Usuario',
-              children: (<UserForm />)
-            })
-          }}>
+          <Button
+            variant="light"
+            leftIcon={<PlusIcon />}
+            onClick={() => {
+              modals.openModal({
+                title: "Agregar Usuario",
+                children: <UserForm />,
+              });
+            }}
+          >
             Agregar
           </Button>
           <Menu
