@@ -1,5 +1,16 @@
-import { Table, Title } from "@mantine/core";
+import { Button, Table, Title } from "@mantine/core";
+import { ChevronRightIcon } from "@radix-ui/react-icons";
+import {
+  MdAccessTime,
+  MdList,
+  MdOutlineCallToAction,
+  MdOutlineConfirmationNumber,
+  MdOutlinePerson,
+  MdPerson,
+} from "react-icons/md";
+import { ChipButton } from "../core/components";
 import { TileData } from "../core/components/TileData";
+import { UserAvatar } from "../core/components/UserAvatar";
 const elements = [
   { position: "2021-01-01", mass: "Diego", symbol: "Juan", name: "2 horas" },
   { position: "2021-01-01", mass: "Diego", symbol: "Juan", name: "3 horas" },
@@ -11,10 +22,16 @@ export function MachineDetails() {
   const rows = elements.map((element) => (
     <tr key={element.name}>
       <td>{element.position}</td>
-      <td>{element.symbol}</td>
-      <td>{element.mass}</td>
+      <td>
+      <UserAvatar color='teal' label={element.mass} to='/usuarios'  />
+      </td>
+      <td>
+        <UserAvatar color='teal' label={element.symbol} to='/usuarios'  />
+      </td>
       <td>{element.name}</td>
-      <td>Ver</td>
+      <td>
+        <ChipButton text="Ver" color="blue" rightIcon={<ChevronRightIcon />} to="/solicitudes/1" />
+      </td>
     </tr>
   ));
   return (
@@ -23,15 +40,20 @@ export function MachineDetails() {
         Detalles de la maquina
       </Title>
       <div
-        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "1rem",
+          marginBottom: "2rem",
+        }}
       >
-        <TileData text="Identificador" />
-        <TileData text="Modelo" />
-        <TileData text="Marca" />
-        <TileData text="Operador" />
-        <TileData text="Solicitudes" />
-        <TileData text="Reparaciones" />
-        <TileData text="Tiempo promedio de reparacion" />
+        <TileData color="blue" text="Identificador" icon={<MdOutlineConfirmationNumber />} />
+        <TileData color="cyan" text="Modelo" icon={<MdOutlineCallToAction />} />
+        <TileData color="grape" text="Marca" icon={<MdOutlineCallToAction />} />
+        <TileData color="green" text="Operador" icon={<MdPerson />} />
+        <TileData color="indigo" text="Solicitudes" icon={<MdAccessTime />} />
+        <TileData color="lime" text="Reparaciones" icon={<MdAccessTime />} />
+        <TileData color="orange" text="Tiempo promedio de reparacion" icon={<MdAccessTime />} />
       </div>
       <Table style={{ marginTop: "1rem" }}>
         <thead>

@@ -4,16 +4,12 @@ import {
   Menu,
   Text,
   Table,
-  Tooltip,
-  ActionIcon,
-  Badge,
   Pagination,
   Avatar,
 } from "@mantine/core";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
-import { Scrollbars } from "react-custom-scrollbars";
-import { createStyles } from "@mantine/styles";
-import { useNavigate } from "react-router-dom";
+import { ChipButton } from "../core/components/ChipButton";
+import { UserAvatar } from "../core/components/UserAvatar";
 
 const elements = [
   { position: 6, mass: 12.011, symbol: "C", name: "Carbon", log: 1 },
@@ -24,38 +20,22 @@ const elements = [
 ];
 
 export function Request() {
-  const navigate = useNavigate();
   const rows = elements.map((element) => (
     <tr key={element.name}>
       <td>
-        <Tooltip label={element.symbol}>
-          <ActionIcon>
-            <Avatar size="sm" radius="xl" color="teal">
-              JD
-            </Avatar>
-          </ActionIcon>
-        </Tooltip>
+        <UserAvatar label={element.symbol} color='teal' to='/usuarios' />
       </td>
       <td>{element.position}</td>
       <td>{element.name}</td>
       <td>
-        <Badge>{element.mass}</Badge>
+        <ChipButton color='red' text={element.mass.toString()} to='/maquinas' />
       </td>
       <td>
-        <Badge color="indigo">{element.log}</Badge>
+        <ChipButton color='indigo' text={element.log + ''} to='/bitacoras' />
       </td>
       <td>2021-01-01 11:10</td>
       <td>
-        <Button
-          variant="light"
-          radius="xl"
-          size="xs"
-          compact
-          rightIcon={<ChevronRightIcon />}
-          onClick={() => navigate("/solicitudes/1")}
-        >
-          Ver
-        </Button>
+        <ChipButton text="Ver" color='blue' rightIcon={<ChevronRightIcon />} to='/solicitudes/1' />
       </td>
     </tr>
   ));

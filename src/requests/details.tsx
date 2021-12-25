@@ -1,6 +1,16 @@
-import { Timeline, Text, Title } from "@mantine/core";
-import { BadgeIcon } from "@radix-ui/react-icons";
+import { Card, Group, Text, Title } from "@mantine/core";
 import { TileData } from "../core/components";
+import { RequestTimeline } from "./components/TimeLine";
+import {
+  MdOutlineReport,
+  MdViewModule,
+  MdOutlineBrandingWatermark,
+  MdOnlinePrediction,
+  MdReceipt,
+  MdDateRange,
+  MdAccessTime,
+  MdPerson,
+} from "react-icons/md";
 
 export function RequestDetails() {
   return (
@@ -13,70 +23,34 @@ export function RequestDetails() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "1rem",
-          marginBottom: "1rem",
+          marginBottom: "2rem",
         }}
       >
-        <TileData text="Problema" />
-        <TileData text="Modulo" />
-        <TileData text="Marca" />
-        <TileData text="Supervisor" />
-        <TileData text="Maquina" />
-        <TileData text="Bitacora" />
-        <TileData text="Creada" />
-        <TileData text="Reparada" />
-        <TileData text="Tiempo de reparacion" />
+        <TileData text="Problema" color="grape" icon={<MdOutlineReport />} />
+        <TileData text="Modulo" color="yellow" icon={<MdViewModule />} />
+        <TileData text="Marca" color="green" icon={<MdOutlineBrandingWatermark />} />
+        <TileData text="Supervisor" color="indigo" icon={<MdPerson />} />
+        <TileData text="Maquina" color="lime" icon={<MdOnlinePrediction />} />
+        <TileData text="Bitacora" color="orange" icon={<MdReceipt />} />
+        <TileData text="Creada" color="pink" icon={<MdDateRange />} />
+        <TileData text="Reparada" color="red" icon={<MdDateRange />} />
+        <TileData text="Tiempo de reparacion" color="teal" icon={<MdAccessTime />} />
       </div>
-      <div style={{ marginBottom: "1rem" }}>
-        <Text>Detalles adicionales del supervisor</Text>
-        <Text>Detalles adicionales del mecanico</Text>
-      </div>
-      <Timeline active={1} bulletSize={24} lineWidth={2}>
-        <Timeline.Item bullet={<BadgeIcon />} title="Nueva solicitud">
-          <Text color="dimmed" size="sm">
-            Solicitud creada por{" "}
-            <Text variant="link" component="span" inherit>
-              Juan
-            </Text>
-          </Text>
-          <Text size="xs" style={{ marginTop: 4 }}>
-            2 hours ago
-          </Text>
-        </Timeline.Item>
 
-        <Timeline.Item bullet={<BadgeIcon />} title="Recibida">
-          <Text color="dimmed" size="sm">
-            Solicitud recibida por{" "}
-            <Text variant="link" component="span" inherit>
-              Diego
-            </Text>
+      <Group style={{ marginBottom: "2rem" }} direction="column" grow>
+        <Card>
+          <Text color="gray" size="sm">
+            Detalles adicionales del supervisor
           </Text>
-          <Text size="xs" style={{ marginTop: 4 }}>
-            52 minutes ago
+        </Card>
+        <Card>
+          <Text color="gray" size="sm">
+            Detalles adicionales del mecanico
           </Text>
-        </Timeline.Item>
+        </Card>
+      </Group>
 
-        <Timeline.Item title="En camino" bullet={<BadgeIcon />}>
-          <Text color="dimmed" size="sm">
-            El mecanico esta en camino
-          </Text>
-          <Text size="xs" style={{ marginTop: 4 }}>
-            34 minutes ago
-          </Text>
-        </Timeline.Item>
-
-        <Timeline.Item title="Reparada" bullet={<BadgeIcon />}>
-          <Text color="dimmed" size="sm">
-            El mecanico marco el problema{" "}
-            <Text variant="link" component="span" inherit>
-              problema
-            </Text>{" "}
-            al momento de realizar la repacion
-          </Text>
-          <Text size="xs" style={{ marginTop: 4 }}>
-            12 minutes ago
-          </Text>
-        </Timeline.Item>
-      </Timeline>
+      <RequestTimeline />
     </div>
   );
 }

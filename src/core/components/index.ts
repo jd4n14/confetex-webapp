@@ -1,1 +1,2 @@
-export { TileData } from './TileData'
+export { TileData } from "./TileData";
+export { ChipButton } from "./ChipButton";
