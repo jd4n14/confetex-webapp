@@ -3,6 +3,8 @@ import { useHover } from "@mantine/hooks";
 import { useModals } from "@mantine/modals";
 import { ActionIcon, Card, Group, Text } from "@mantine/core";
 import { TrashIcon } from "@radix-ui/react-icons";
+import { useMutation, useQueryClient } from "react-query";
+import { deleteLine } from "../api";
 
 const useStyles = createStyles((theme) => ({
   cardGroup: {
@@ -11,6 +13,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface UserCardProps {
+  id: number;
   name: string;
 }
 
@@ -18,6 +21,12 @@ export const LinesCard = (props: UserCardProps) => {
   const { classes } = useStyles();
   const { hovered, ref } = useHover();
   const modals = useModals();
+  const queryClient = useQueryClient();
+
+  const deleteLineMutation = useMutation(deleteLine, {
+    onSuccess: () => queryClient.invalidateQueries("lines"),
+  });
+
   return (
     <Card shadow="sm" padding="lg" style={{ height: 90 }} ref={ref}>
       <div style={{ width: "100%" }}>
@@ -46,8 +55,7 @@ export const LinesCard = (props: UserCardProps) => {
                   confirmProps: {
                     color: "red",
                   },
-                  onCancel: () => console.log("cancelled"),
-                  onConfirm: () => console.log("confirmed"),
+                  onConfirm: () => deleteLineMutation.mutate(props.id),
                 });
               }}
             >
