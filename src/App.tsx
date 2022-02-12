@@ -11,12 +11,13 @@ import { MachineDetails } from "./machines/details";
 import { RequestDetails } from "./requests/details";
 import { LogDetails } from "./logs/details";
 import { Login } from "./login";
+import { PrivateRoute } from "./core/components/PrivateRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="bitacoras" element={<Log />} />
         <Route path="bitacoras/:id" element={<LogDetails />} />
         <Route path="usuarios" element={<User />} />

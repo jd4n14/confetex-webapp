@@ -1,16 +1,7 @@
-import {
-  ActionIcon,
-  Button,
-  Group,
-  Input,
-  Menu,
-} from "@mantine/core";
+import { ActionIcon, Button, Group, Input, Menu } from "@mantine/core";
 import { useModals } from "@mantine/modals";
-import {
-  DotsVerticalIcon,
-  MagnifyingGlassIcon,
-  PlusIcon,
-} from "@radix-ui/react-icons";
+import { DotsVerticalIcon, MagnifyingGlassIcon, PlusIcon } from "@radix-ui/react-icons";
+import { InputSearch } from "../core/components/InputSearch";
 import { LogCard } from "./components/LogCard";
 import LogForm from "./components/LogForm";
 
@@ -20,13 +11,17 @@ export function Log() {
   return (
     <div>
       <Group position="right" style={{ marginTop: 20, marginBottom: 20 }}>
-        <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
-        <Button variant="light" leftIcon={<PlusIcon />} onClick={() => {
-          modals.openModal({
-            title: 'Agregar bitacora',
-            children: ( <LogForm /> )
-          })
-        }}>
+        <InputSearch onChange={() => {}} />
+        <Button
+          variant="light"
+          leftIcon={<PlusIcon />}
+          onClick={() => {
+            modals.openModal({
+              title: "Agregar bitacora",
+              children: <LogForm />,
+            });
+          }}
+        >
           Agregar
         </Button>
         <Menu

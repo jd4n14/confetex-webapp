@@ -19,6 +19,7 @@ import { createStyles } from "@mantine/styles";
 import { useHover } from "@mantine/hooks";
 import { useModals } from "@mantine/modals";
 import { UserForm } from "./components/UserForm";
+import { InputSearch } from "../core/components/InputSearch";
 
 const useStyles = createStyles((theme) => ({
   cardGroup: {
@@ -88,7 +89,7 @@ export function User() {
           Usuarios
         </Text>
         <Group>
-          <Input icon={<MagnifyingGlassIcon />} placeholder="Buscar" />
+          <InputSearch onChange={()=> {}} />
           <Button
             variant="light"
             leftIcon={<PlusIcon />}
