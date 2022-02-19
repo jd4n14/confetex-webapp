@@ -9,7 +9,8 @@ import {
   ReloadIcon,
   UpdateIcon,
 } from "@radix-ui/react-icons";
-import { useMatch, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import React from "react";
 
 interface MainLinkProps {
   icon: React.ReactNode;

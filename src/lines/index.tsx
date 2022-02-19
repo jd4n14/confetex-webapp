@@ -5,9 +5,9 @@ import { Line } from "../core/types";
 import { LinesCard } from "./components/LinesCard";
 import { createNewLine } from "./api";
 import { useHotkeys } from "@mantine/hooks";
+import { queryClient } from "../core/api/queryClient";
 
 export function Lines() {
-  const queryClient = useQueryClient();
   const { data: lines, isFetching } = useQuery<Line[]>("lines");
   const addNewLineMutation = useMutation(createNewLine, {
     onSuccess: () => queryClient.invalidateQueries("lines"),
@@ -17,7 +17,7 @@ export function Lines() {
     addNewLineMutation.mutate();
   };
 
-  useHotkeys([["mod+A", () => handleCreateNewLine()]]);
+  useHotkeys([["mod+C", () => handleCreateNewLine()]]);
 
   return (
     <div>

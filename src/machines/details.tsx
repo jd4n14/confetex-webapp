@@ -1,11 +1,9 @@
-import { Button, Table, Title } from "@mantine/core";
+import { Table, Title } from "@mantine/core";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import {
   MdAccessTime,
-  MdList,
   MdOutlineCallToAction,
   MdOutlineConfirmationNumber,
-  MdOutlinePerson,
   MdPerson,
 } from "react-icons/md";
 import { ChipButton } from "../core/components";
@@ -23,14 +21,19 @@ export function MachineDetails() {
     <tr key={element.name}>
       <td>{element.position}</td>
       <td>
-      <UserAvatar color='teal' label={element.mass} to='/usuarios'  />
+        <UserAvatar color="teal" label={element.mass} to="/usuarios" />
       </td>
       <td>
-        <UserAvatar color='teal' label={element.symbol} to='/usuarios'  />
+        <UserAvatar color="teal" label={element.symbol} to="/usuarios" />
       </td>
       <td>{element.name}</td>
       <td>
-        <ChipButton text="Ver" color="blue" rightIcon={<ChevronRightIcon />} to="/solicitudes/1" />
+        <ChipButton
+          text="Ver"
+          color="blue"
+          rightIcon={<ChevronRightIcon />}
+          to="/solicitudes/1"
+        />
       </td>
     </tr>
   ));
@@ -47,13 +50,21 @@ export function MachineDetails() {
           marginBottom: "2rem",
         }}
       >
-        <TileData color="blue" text="Identificador" icon={<MdOutlineConfirmationNumber />} />
+        <TileData
+          color="blue"
+          text="Identificador"
+          icon={<MdOutlineConfirmationNumber />}
+        />
         <TileData color="cyan" text="Modelo" icon={<MdOutlineCallToAction />} />
         <TileData color="grape" text="Marca" icon={<MdOutlineCallToAction />} />
         <TileData color="green" text="Operador" icon={<MdPerson />} />
         <TileData color="indigo" text="Solicitudes" icon={<MdAccessTime />} />
         <TileData color="lime" text="Reparaciones" icon={<MdAccessTime />} />
-        <TileData color="orange" text="Tiempo promedio de reparacion" icon={<MdAccessTime />} />
+        <TileData
+          color="orange"
+          text="Tiempo promedio de reparacion"
+          icon={<MdAccessTime />}
+        />
       </div>
       <Table style={{ marginTop: "1rem" }}>
         <thead>

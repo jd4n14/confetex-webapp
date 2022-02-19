@@ -6,13 +6,11 @@ import {
   Text,
   MediaQuery,
   Burger,
-  ActionIcon,
   Group,
+  ScrollArea,
 } from "@mantine/core";
-import { Scrollbars } from "react-custom-scrollbars";
 import { MainLinks } from "./mainLinks";
 import { Outlet } from "react-router-dom";
-import { EnterFullScreenIcon, SunIcon } from "@radix-ui/react-icons";
 import { HeaderActions } from "./header";
 
 export function Layout() {
@@ -28,17 +26,24 @@ export function Layout() {
           hidden={!opened}
           width={{ sm: 250 }}
         >
-          <Navbar.Section grow>
-            <Scrollbars>
-              <MainLinks />
-            </Scrollbars>
+          <Navbar.Section
+            grow
+            component={ScrollArea}
+            ml={-10}
+            mr={-10}
+            sx={{ paddingLeft: 10, paddingRight: 10 }}
+          >
+            <MainLinks />
           </Navbar.Section>
           <Navbar.Section>Last section</Navbar.Section>
         </Navbar>
       }
       header={
         <Header height={70} padding="md">
-          <Group style={{ height: "100%", alignItems: "center" }} position="apart">
+          <Group
+            style={{ height: "100%", alignItems: "center" }}
+            position="apart"
+          >
             <Group spacing="sm">
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                 <Burger
@@ -60,12 +65,16 @@ export function Layout() {
       styles={(theme) => ({
         main: {
           backgroundColor:
-            theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.colors.gray[0],
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
         },
       })}
     >
-      <div style={{ paddingRight: 16, height: "100%" }}>
-        <Outlet />
+      <div style={{ paddingRight: 16 }}>
+        <ScrollArea>
+          <Outlet />
+        </ScrollArea>
       </div>
     </AppShell>
   );
