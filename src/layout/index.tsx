@@ -7,7 +7,7 @@ import {
   MediaQuery,
   Burger,
   Group,
-  ScrollArea,
+  ScrollArea, Title,
 } from "@mantine/core";
 import { MainLinks } from "./mainLinks";
 import { Outlet } from "react-router-dom";
@@ -29,13 +29,13 @@ export function Layout() {
           <Navbar.Section
             grow
             component={ScrollArea}
-            ml={-10}
-            mr={-10}
             sx={{ paddingLeft: 10, paddingRight: 10 }}
           >
             <MainLinks />
           </Navbar.Section>
-          <Navbar.Section>Last section</Navbar.Section>
+          <Navbar.Section>
+            <Text>Last section</Text>
+          </Navbar.Section>
         </Navbar>
       }
       header={
@@ -54,7 +54,7 @@ export function Layout() {
                   mr="xl"
                 />
               </MediaQuery>
-              <Text weight={700}>Confetex</Text>
+              <Title order={5}>Confetex</Title>
             </Group>
             <Group>
               <HeaderActions />
@@ -66,15 +66,13 @@ export function Layout() {
         main: {
           backgroundColor:
             theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
+              ? theme.colors.dark[6]
               : theme.colors.gray[0],
         },
       })}
     >
       <div style={{ paddingRight: 16 }}>
-        <ScrollArea>
-          <Outlet />
-        </ScrollArea>
+        <Outlet />
       </div>
     </AppShell>
   );

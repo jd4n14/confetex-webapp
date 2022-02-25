@@ -6,10 +6,7 @@ export const HeaderActions = () => {
   const { toggle: toggleFullScreen, fullscreen: isFullScreen } = useFullscreen();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
-
   useHotkeys([["mod+T", () => toggleFullScreen()]]);
-  useHotkeys([["mod+J", () => toggleColorScheme()]]);
-
   return (
     <>
       <ActionIcon onClick={toggleFullScreen}>

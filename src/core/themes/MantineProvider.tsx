@@ -2,30 +2,31 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider as MP,
-  MantineTheme,
-  useMantineTheme,
 } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import { ModalSettings } from "@mantine/modals/lib/context";
 import { NotificationsProvider } from "@mantine/notifications";
-import { useColorScheme } from "@mantine/hooks";
-import { useState } from "react";
+import { useHotkeys, useLocalStorageValue} from "@mantine/hooks";
+import React from "react";
 
 interface MantineProviderProps {
   children: React.ReactNode;
 }
+const THEME_KEY = 'color-scheme';
 
 export const MantineProvider = (props: MantineProviderProps) => {
-  const theme = useMantineTheme();
+  const [colorScheme, setColorScheme] = useLocalStorageValue<ColorScheme>({
+    key: THEME_KEY,
+    defaultValue: 'light',
+  });
 
-  const preferredColorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useState(preferredColorScheme);
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
+  useHotkeys([["mod+J", () => toggleColorScheme()]]);
+
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MP theme={{ colorScheme, loader: "dots" }}>
+      <MP withGlobalStyles withNormalizeCSS theme={{ colorScheme, loader: "dots"}}>
         <ModalsProvider
           modalProps={{
             centered: true,

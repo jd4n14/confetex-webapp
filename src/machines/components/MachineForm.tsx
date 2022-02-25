@@ -22,26 +22,26 @@ export const MachineForm = (props: MachineFormProps) => {
     <form onSubmit={form.onSubmit((values) => props.onSave(values))}>
       <Group direction="column" grow>
         <TextInput
-          label="Identificador"
-          placeholder="Identificador"
+          label="Identifier"
+          placeholder="Identifier"
           {...form.getInputProps("identifier")}
         />
         <TextInput
-          label="Marca"
-          placeholder="Marca de la maquina"
+          label="Brand"
+          placeholder="Brand"
           {...form.getInputProps("brand")}
         />
         <TextInput
-          label="Modelo"
-          placeholder="Modelo"
+          label="Model"
+          placeholder="Model"
           {...form.getInputProps("model")}
         />
         <TextInput
-          label="Operador"
-          placeholder="Nombre del operador"
+          label="Operator"
+          placeholder="Operator"
           {...form.getInputProps("operator")}
         />
-        <Button type="submit">Guardar</Button>
+        <Button type="submit">Save</Button>
       </Group>
     </form>
   );

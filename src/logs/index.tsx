@@ -1,6 +1,10 @@
 import { ActionIcon, Button, Group, Input, Menu } from "@mantine/core";
 import { useModals } from "@mantine/modals";
-import { DotsVerticalIcon, MagnifyingGlassIcon, PlusIcon } from "@radix-ui/react-icons";
+import {
+  DotsVerticalIcon,
+  MagnifyingGlassIcon,
+  PlusIcon,
+} from "@radix-ui/react-icons";
 import { InputSearch } from "../core/components/InputSearch";
 import { LogCard } from "./components/LogCard";
 import LogForm from "./components/LogForm";
@@ -42,10 +46,10 @@ export function Log() {
           gap: 15,
         }}
       >
-        <LogCard title="Bitacora 1" to="/bitacoras/1" />
-        <LogCard title="Bitacora 1" to="/bitacoras/1" />
-        <LogCard title="Bitacora 1" to="/bitacoras/1" />
-        <LogCard title="Bitacora 1" to="/bitacoras/1" />
+        <LogCard title="Bitacora 1" to="/logs/1" />
+        <LogCard title="Bitacora 1" to="/logs/1" />
+        <LogCard title="Bitacora 1" to="/logs/1" />
+        <LogCard title="Bitacora 1" to="/logs/1" />
       </div>
     </div>
   );

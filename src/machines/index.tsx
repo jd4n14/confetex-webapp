@@ -33,7 +33,7 @@ export function Machines() {
 
   const handleShowModal = () => {
     const id = modals.openModal({
-      title: "Agregar Maquina",
+      title: "Add new",
       children: <MachineForm onSave={(data) => handleSaveMachine(id, data)} />,
     });
   };
@@ -42,7 +42,7 @@ export function Machines() {
     <>
       <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
         <Text size="xl" weight={600}>
-          Maquinas
+          Machines
         </Text>
         <Group>
           <InputSearch onChange={(val: string) => {}} />
@@ -51,7 +51,7 @@ export function Machines() {
             leftIcon={<PlusIcon />}
             onClick={handleShowModal}
           >
-            Agregar
+            Add
           </Button>
         </Group>
       </Group>

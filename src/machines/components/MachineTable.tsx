@@ -11,11 +11,11 @@ export const MachineTable = (props: MachineTableProps) => {
     <Table verticalSpacing="xs" horizontalSpacing="sm" highlightOnHover>
       <thead>
         <tr>
-          <th>Identificador</th>
-          <th>Modelo</th>
-          <th>Marca</th>
-          <th>Operador</th>
-          <th>Ver</th>
+          <th>Identifier</th>
+          <th>Model</th>
+          <th>Brand</th>
+          <th>Operator</th>
+          <th>Go</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,7 @@ export const MachineTable = (props: MachineTableProps) => {
                 <UserAvatar
                   label={machine.operator}
                   color="blue"
-                  to={`/usuarios/${machine.operator}`}
+                  to={`/users/${machine.operator}`}
                 />
               )}
             </td>
@@ -37,7 +37,7 @@ export const MachineTable = (props: MachineTableProps) => {
               <ChipButton
                 text="Ver"
                 color="blue"
-                to={`/maquinas/${machine.id}`}
+                to={`/machines/${machine.id}`}
                 rightIcon={<ChevronRightIcon />}
               />
             </td>

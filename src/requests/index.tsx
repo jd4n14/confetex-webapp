@@ -2,7 +2,7 @@ import {
   Group,
   Button,
   Menu,
-  Text,
+  Title,
   Table,
   Pagination,
   Avatar,
@@ -42,9 +42,9 @@ export function Request() {
   return (
     <div>
       <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
-        <Text size="xl" weight={600}>
+        <Title order={2}>
           Solicitudes
-        </Text>
+        </Title>
         <Group>
           <Menu control={<Button variant="light">Filtrar</Button>}>
             <Menu.Label>Fecha</Menu.Label>

@@ -56,37 +56,37 @@ export function MainLink({ icon, color, label, url }: MainLinkProps) {
 }
 
 const data = [
-  { icon: <HomeIcon />, color: "blue", label: "Inicio", url: "/" },
+  { icon: <HomeIcon />, color: "blue", label: "Home", url: "/" },
   {
     icon: <ActivityLogIcon />,
     color: "lime",
-    label: "Bitacoras",
-    url: "/bitacoras",
+    label: "Logs",
+    url: "/logs",
   },
   {
     icon: <PersonIcon />,
     color: "yellow",
-    label: "Usuarios",
-    url: "/usuarios",
+    label: "Users",
+    url: "/users",
   },
   {
     icon: <ReloadIcon />,
     color: "grape",
-    label: "Solicitudes",
-    url: "/solicitudes",
+    label: "Requests",
+    url: "/requests",
   },
-  { icon: <CommitIcon />, color: "pink", label: "Maquinas", url: "/maquinas" },
+  { icon: <CommitIcon />, color: "pink", label: "Machines", url: "/machines" },
   {
     icon: <UpdateIcon />,
     color: "cyan",
-    label: "Lineas de produccion",
-    url: "/lineas",
+    label: "Production Lines",
+    url: "/lines",
   },
   {
     icon: <CircleIcon />,
     color: "orange",
-    label: "Configuracion",
-    url: "/configuracion",
+    label: "Settings",
+    url: "/settings",
   },
 ];
 
