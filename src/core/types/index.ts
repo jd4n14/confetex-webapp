@@ -1,3 +1,5 @@
+import { Params } from "react-router-dom";
+
 export interface Line {
   id: number;
 }
@@ -15,4 +17,8 @@ export interface Paginate<T> {
     current: string;
     last: string;
   };
+}
+
+export interface ParamsId extends Params {
+  id: string;
 }

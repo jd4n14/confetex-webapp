@@ -7,7 +7,8 @@ import {
   MediaQuery,
   Burger,
   Group,
-  ScrollArea, Title,
+  ScrollArea,
+  Title,
 } from "@mantine/core";
 import { MainLinks } from "./mainLinks";
 import { Outlet } from "react-router-dom";
@@ -48,7 +49,7 @@ export function Layout() {
               <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
                 <Burger
                   opened={opened}
-                  onClick={() => setOpened((o) => !o)}
+                  onClick={() => setOpened((value) => !value)}
                   size="sm"
                   color={"gray"}
                   mr="xl"
@@ -66,7 +67,7 @@ export function Layout() {
         main: {
           backgroundColor:
             theme.colorScheme === "dark"
-              ? theme.colors.dark[6]
+              ? theme.colors.dark[8]
               : theme.colors.gray[0],
         },
       })}

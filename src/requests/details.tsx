@@ -11,13 +11,11 @@ import {
   MdAccessTime,
   MdPerson,
 } from "react-icons/md";
+import { Page } from "../core/components/Page";
 
 export function RequestDetails() {
   return (
-    <div>
-      <Title order={2} style={{ marginBottom: "1rem" }}>
-        Detalles de la solicitud
-      </Title>
+    <Page title="Request details">
       <div
         style={{
           display: "grid",
@@ -28,13 +26,21 @@ export function RequestDetails() {
       >
         <TileData text="Problema" color="grape" icon={<MdOutlineReport />} />
         <TileData text="Modulo" color="yellow" icon={<MdViewModule />} />
-        <TileData text="Marca" color="green" icon={<MdOutlineBrandingWatermark />} />
+        <TileData
+          text="Marca"
+          color="green"
+          icon={<MdOutlineBrandingWatermark />}
+        />
         <TileData text="Supervisor" color="indigo" icon={<MdPerson />} />
         <TileData text="Maquina" color="lime" icon={<MdOnlinePrediction />} />
         <TileData text="Bitacora" color="orange" icon={<MdReceipt />} />
         <TileData text="Creada" color="pink" icon={<MdDateRange />} />
         <TileData text="Reparada" color="red" icon={<MdDateRange />} />
-        <TileData text="Tiempo de reparacion" color="teal" icon={<MdAccessTime />} />
+        <TileData
+          text="Tiempo de reparacion"
+          color="teal"
+          icon={<MdAccessTime />}
+        />
       </div>
 
       <Group style={{ marginBottom: "2rem" }} direction="column" grow>
@@ -51,6 +57,6 @@ export function RequestDetails() {
       </Group>
 
       <RequestTimeline />
-    </div>
+    </Page>
   );
 }

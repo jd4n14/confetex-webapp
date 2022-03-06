@@ -4,16 +4,19 @@ import {
   ChatBubbleIcon,
   MixerVerticalIcon,
 } from "@radix-ui/react-icons";
+import { Page } from "../core/components/Page";
 
 export function Settings() {
   return (
-    <Tabs variant="outline" position="center">
-      <Tabs.Tab label="Catalogo" icon={<ChatBubbleIcon />}>
-        Catalogo
-      </Tabs.Tab>
-      <Tabs.Tab label="Eventos" icon={<MixerVerticalIcon />}>
-        Eventos
-      </Tabs.Tab>
-    </Tabs>
+    <Page title="Settings">
+      <Tabs variant="outline" position="center">
+        <Tabs.Tab label="Catalogo" icon={<ChatBubbleIcon />}>
+          Catalog
+        </Tabs.Tab>
+        <Tabs.Tab label="Eventos" icon={<MixerVerticalIcon />}>
+          Log
+        </Tabs.Tab>
+      </Tabs>
+    </Page>
   );
 }

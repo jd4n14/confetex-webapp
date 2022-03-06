@@ -1,7 +1,6 @@
 import {
   Group,
   Button,
-  Text,
   Pagination,
   LoadingOverlay,
   ScrollArea,
@@ -17,6 +16,7 @@ import { Machine } from "./types";
 import { Paginate } from "../core/types";
 import { queryClient } from "../core/api/queryClient";
 import { createMachine } from "./api";
+import { Page } from "../core/components/Page";
 
 export function Machines() {
   const modals = useModals();
@@ -39,11 +39,9 @@ export function Machines() {
   };
 
   return (
-    <>
-      <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
-        <Text size="xl" weight={600}>
-          Machines
-        </Text>
+    <Page
+      title="Machines"
+      actions={
         <Group>
           <InputSearch onChange={(val: string) => {}} />
           <Button
@@ -54,7 +52,8 @@ export function Machines() {
             Add
           </Button>
         </Group>
-      </Group>
+      }
+    >
       <LoadingOverlay visible={isFetching} />
       <ScrollArea>
         <MachineTable machines={data?.data} />
@@ -67,6 +66,6 @@ export function Machines() {
           onChange={() => {}}
         />
       </Group>
-    </>
+    </Page>
   );
 }

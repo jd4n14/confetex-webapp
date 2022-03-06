@@ -1,11 +1,12 @@
-import { Button, Group, LoadingOverlay, Text } from "@mantine/core";
+import { Button, LoadingOverlay } from "@mantine/core";
 import { PlusIcon } from "@radix-ui/react-icons";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Line } from "../core/types";
 import { LinesCard } from "./components/LinesCard";
 import { createNewLine } from "./api";
 import { useHotkeys } from "@mantine/hooks";
 import { queryClient } from "../core/api/queryClient";
+import { Page } from "../core/components/Page";
 
 export function Lines() {
   const { data: lines, isFetching } = useQuery<Line[]>("lines");
@@ -20,19 +21,19 @@ export function Lines() {
   useHotkeys([["mod+C", () => handleCreateNewLine()]]);
 
   return (
-    <div>
-      <Group position="apart" style={{ marginTop: 20, marginBottom: 20 }}>
-        <Text size="xl" weight={600}>
-          Lineas de produccion
-        </Text>
+    <Page
+      title="Production Lines"
+      actions={
         <Button
           variant="light"
           leftIcon={<PlusIcon />}
+          disabled={addNewLineMutation.isLoading}
           onClick={handleCreateNewLine}
         >
-          Agregar
+          Add new
         </Button>
-      </Group>
+      }
+    >
       <div
         style={{
           display: "grid",
@@ -43,12 +44,12 @@ export function Lines() {
         <LoadingOverlay visible={isFetching} />
         {lines?.map((line) => (
           <LinesCard
-            name={`Linea ${line.id}`}
+            name={`Production line ${line.id}`}
             key={`line-${line.id}`}
             id={line.id}
           />
         ))}
       </div>
-    </div>
+    </Page>
   );
 }

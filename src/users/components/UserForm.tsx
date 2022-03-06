@@ -1,30 +1,62 @@
 import { Button, Group, PasswordInput, Select, TextInput } from "@mantine/core";
+import { Role, User } from "../types";
+import { useForm } from "@mantine/hooks";
 
-export const UserForm = () => {
+interface UserFormProps {
+  onSubmit: (user: Partial<User>) => void;
+  values?: Omit<User, "id"> | null;
+}
+
+export const UserForm = (props: UserFormProps) => {
+  const form = useForm<Partial<User>>({
+    initialValues: props.values || {
+      email: "",
+      name: "",
+      password: "",
+      role: Role.MECHANIC,
+    },
+  });
   return (
-    <Group direction="column" grow>
-      <TextInput placeholder="Nombre completo" label="Nombre" />
-      <TextInput placeholder="Correo" label="Correo" type="email" />
-      <PasswordInput placeholder="Contrasenia" label="Contrasenia" />
-      <Select
-        label="Rol"
-        placeholder="Selecciona el rol"
-        data={[
-          { value: "react", label: "Mecanico" },
-          { value: "ng", label: "Supervisor" },
-        ]}
-      />
-      <Select
-        label="Linea de produccion"
-        placeholder="Lina de produccion"
-        data={[
-          { value: "react", label: "Mecanico" },
-          { value: "ng", label: "Supervisor" },
-        ]}
-      />
-      <Group position="right">
-        <Button type="submit">Agregar</Button>
+    <form onSubmit={form.onSubmit(props.onSubmit)}>
+      <Group direction="column" grow>
+        <TextInput
+          placeholder="Name"
+          label="Name"
+          {...form.getInputProps("name")}
+        />
+        <TextInput
+          placeholder="Email"
+          label="Email"
+          type="email"
+          {...form.getInputProps("email")}
+        />
+        <PasswordInput
+          placeholder="Password"
+          label="Password"
+          {...form.getInputProps("password")}
+        />
+        <Select
+          label="Rol"
+          placeholder="Select role"
+          data={[
+            { value: "MECHANIC", label: "Mechanic" },
+            { value: "ng", label: "Supervisor" },
+          ]}
+          {...form.getInputProps("role")}
+        />
+        <Select
+          label="Production Line"
+          placeholder="Production line"
+          data={[
+            { value: "MECHANIC", label: "Mechanic" },
+            { value: "ng", label: "Supervisor" },
+          ]}
+          {...form.getInputProps("role")}
+        />
+        <Group position="right">
+          <Button type="submit">{props.values ? "Update" : "New"} user</Button>
+        </Group>
       </Group>
-    </Group>
+    </form>
   );
 };
